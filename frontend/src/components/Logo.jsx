@@ -4,7 +4,7 @@ const Logo = ({ width = 80, height = 80 }) => {
   return (
     <Box
       component="img"
-      src="/src/assets/logo.png"
+      src="/logo.png"
       alt="Taskly Logo"
       sx={{
         width: width,
