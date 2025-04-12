@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Logo from './Logo';
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated, user }) => {
   const navigate = useNavigate();
@@ -13,13 +14,16 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated, user }) => {
   return (
     <AppBar position="static" elevation={0}>
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Taskly
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+          <Logo width={40} height={40} />
+          <Typography variant="h6" component="div" sx={{ ml: 1 }}>
+            Taskly
+          </Typography>
+        </Box>
         {isAuthenticated ? (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Typography variant="body1">
-              Welcome, {user?.name}
+              {user?.name}
             </Typography>
             <Button
               color="inherit"

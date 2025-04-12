@@ -10,6 +10,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import axios from 'axios';
+import Logo from './Logo';
 
 const Login = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
@@ -59,9 +60,12 @@ const Login = ({ setIsAuthenticated }) => {
           bgcolor: 'background.paper',
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom align="center">
-          Login
-        </Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
+          <Logo width={100} height={100} />
+          <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ mt: 2 }}>
+            Login
+          </Typography>
+        </Box>
         {error && (
           <Alert severity="error" sx={{ mb: 2 }}>
             {error}

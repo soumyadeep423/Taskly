@@ -10,6 +10,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import axios from 'axios';
+import Logo from './Logo';
 
 const Register = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
@@ -71,9 +72,12 @@ const Register = ({ setIsAuthenticated }) => {
           bgcolor: 'background.paper',
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom align="center">
-          Register
-        </Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
+          <Logo width={100} height={100} />
+          <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ mt: 2 }}>
+            Register
+          </Typography>
+        </Box>
         {error && (
           <Alert severity="error" sx={{ mb: 2 }}>
             {error}

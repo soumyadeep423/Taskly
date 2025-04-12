@@ -71,4 +71,13 @@ yarn-error.log*
 .vercel
 
 # Render
-.render 
+.render
+
+# Image files (only ignore temporary/processed images)
+*.tmp
+*.temp
+*.cache
+*.webp
+*.avif
+*.heic
+*.heif 

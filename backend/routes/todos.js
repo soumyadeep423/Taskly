@@ -75,7 +75,7 @@ router.delete('/:id', auth, async (req, res) => {
             return res.status(401).json({ msg: 'Not authorized' });
         }
 
-        await todo.remove();
+        await todo.deleteOne();
         res.json({ msg: 'Todo removed' });
     } catch (err) {
         console.error(err.message);
