@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import Logo from './Logo';
+import { API_BASE_URL } from '../config';
 
 const Register = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Register = ({ setIsAuthenticated }) => {
     }
 
     try {
-      const res = await axios.post('/api/auth/register', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         name,
         email,
         password,

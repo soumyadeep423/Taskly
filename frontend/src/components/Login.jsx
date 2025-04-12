@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import Logo from './Logo';
+import { API_BASE_URL } from '../config';
 
 const Login = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Login = ({ setIsAuthenticated }) => {
     setError('');
 
     try {
-      const res = await axios.post('/api/auth/login', formData);
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, formData);
       localStorage.setItem('token', res.data.token);
       axios.defaults.headers.common['x-auth-token'] = res.data.token;
       setIsAuthenticated(true);

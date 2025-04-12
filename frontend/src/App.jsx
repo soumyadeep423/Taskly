@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Container, Box } from '@mui/material';
 import axios from 'axios';
+import { API_BASE_URL } from './config';
 
 // Components
 import Navbar from './components/Navbar';
@@ -64,7 +65,7 @@ function App() {
       axios.defaults.headers.common['x-auth-token'] = token;
       setIsAuthenticated(true);
       // Fetch user data
-      axios.get('/api/auth/user')
+      axios.get(`${API_BASE_URL}/api/auth/user`)
         .then(res => setUser(res.data))
         .catch(err => {
           localStorage.removeItem('token');
