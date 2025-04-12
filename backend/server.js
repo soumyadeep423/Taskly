@@ -12,7 +12,7 @@ const app = express();
 // CORS configuration
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://your-frontend-domain.vercel.app'
+    ? 'https://taskly-eight-navy.vercel.app'
     : 'http://localhost:5173',
   credentials: true,
 };
