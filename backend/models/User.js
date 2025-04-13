@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    collection: 'taskly_users'
 });
 
 // Hash password before saving
