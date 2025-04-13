@@ -4,12 +4,15 @@ const bcrypt = require('bcryptjs');
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        trim: true,
+        lowercase: true
     },
     password: {
         type: String,
@@ -19,7 +22,12 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+}, {
+    timestamps: true
 });
+
+// Create indexes
+UserSchema.index({ email: 1 }, { unique: true });
 
 // Hash password before saving
 UserSchema.pre('save', async function(next) {

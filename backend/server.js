@@ -22,9 +22,20 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/taskly')
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/taskly', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB Connected Successfully');
+  } catch (err) {
+    console.error('MongoDB Connection Error:', err.message);
+    process.exit(1);
+  }
+};
+
+connectDB();
 
 // Define Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -32,8 +43,11 @@ app.use('/api/todos', require('./routes/todos'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
+    console.error('Error:', err.stack);
+    res.status(500).json({ 
+        error: 'Server Error',
+        message: err.message 
+    });
 });
 
 app.get('/', (req, res) => {

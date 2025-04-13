@@ -51,13 +51,19 @@ router.post(
                 process.env.JWT_SECRET,
                 { expiresIn: '1h' },
                 (err, token) => {
-                    if (err) throw err;
+                    if (err) {
+                        console.error('JWT Error:', err);
+                        return res.status(500).json({ msg: 'Error generating token' });
+                    }
                     res.json({ token });
                 }
             );
         } catch (err) {
-            console.error(err.message);
-            res.status(500).send('Server error');
+            console.error('Registration Error:', err);
+            res.status(500).json({ 
+                msg: 'Server error during registration',
+                error: err.message 
+            });
         }
     }
 );
